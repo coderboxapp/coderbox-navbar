@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { storiesOf } from '@storybook/react'
+import { storiesOf, action } from '@storybook/react'
 
 import Navbar from './components/Navbar'
 import NavbarItem from './components/NavbarItem'
@@ -13,8 +13,9 @@ storiesOf('NavBar', module)
   .add('simple usage', () => {
     return (
       <Navbar brand={<Logo />}>
-        <NavbarItem text='Profile' icon='timeline' />
+        <NavbarItem text='My Profile' icon='timeline' />
         <NavbarItem text='Jobs' icon='work' />
+        <NavbarItem text='Sign Out' icon='close' onClick={action('log out')} />
       </Navbar>
     )
   })

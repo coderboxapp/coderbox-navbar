@@ -17,7 +17,7 @@ export const NavbarStyle = styled.div`
   width: 100%;
 
   &:after {
-    background: linear-gradient(to right, ${palette(1)}, ${palette(2)});
+    background: linear-gradient(to right, ${palette(1)}, ${palette(4)});
     content: '';
     width: 100%;
     position: absolute;
@@ -70,7 +70,6 @@ export const NavbarItemStyle = styled.a`
   padding: 8px 16px;
   margin: 0px;
   color: black;
-  font-family: inherit;
   box-sizing: border-box;
   i {
     display: block;
