@@ -12,8 +12,8 @@ const Logo = () => {
 storiesOf('NavBar', module)
   .add('simple usage', () => {
     return (
-      <Navbar brand={<Logo />}>
-        <NavbarItem text='My Profile' icon='timeline' />
+      <Navbar isDanger brand={<Logo />}>
+        <NavbarItem isActive text='My Profile' icon='timeline' />
         <NavbarItem text='Jobs' icon='work' />
         <NavbarItem text='Sign Out' icon='close' onClick={action('log out')} />
       </Navbar>

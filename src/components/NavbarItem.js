@@ -1,5 +1,5 @@
 import React from 'react'
-import { string, bool, func, object } from 'prop-types'
+import { string, bool, func } from 'prop-types'
 import { NavbarItemStyle } from '../styles'
 
 class NavbarItem extends React.Component {
@@ -8,43 +8,32 @@ class NavbarItem extends React.Component {
     text: string,
     href: string,
     hide: bool,
+    isActive: bool,
     onClick: func
   }
 
   static defaultProps = {
     href: '',
+    isActive: false,
     hide: false,
     onClick: () => true
   }
 
   static contextTypes = {
-    router: object,
     palette: string
   }
 
-  isActive (name) {
-    const { router } = this.context
-
-    if (router) {
-      return router.getCurrentLocation().pathname === name
-    }
-
-    return false
-  }
-
   render () {
-    let { href, icon, text, hide, onClick } = this.props
+    let { href, icon, text, hide, isActive, onClick } = this.props
     let { palette } = this.context
 
     if (hide) return null
-
-    let isActive = this.isActive(href, null, false) ? ' active' : ''
 
     return (
       <NavbarItemStyle
         href={href}
         palette={palette}
-        className={`NavbarItem${isActive}`}
+        className={`NavbarItem${isActive ? ' active' : ''}`}
         onClick={onClick}>
 
         <i className='material-icons'>{icon}</i> {text}

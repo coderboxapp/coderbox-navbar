@@ -1,6 +1,6 @@
 import React from 'react'
 import { object, bool, func, string, oneOfType } from 'prop-types'
-import { browserHistory } from 'react-router'
+import { styleProps, fromProps } from 'styled-utils'
 
 // components
 import NavbarBrand from './NavbarBrand'
@@ -15,26 +15,14 @@ class Navbar extends React.Component {
 
   static propTypes = {
     fixed: bool,
-    palette: string,
     brand: oneOfType([func, string, object]),
     className: string
   }
 
-  static defaultProps = {
-    palette: 'primary'
-  }
-
   static childContextTypes = { palette: string }
-  static contextTypes = { router: object }
 
   getChildContext () {
-    return { palette: this.props.palette }
-  }
-
-  componentDidMount () {
-    if (browserHistory) {
-      browserHistory.listen(() => this.setState({ open: false }))
-    }
+    return { palette: fromProps(this.props) }
   }
 
   toggle () {
@@ -42,15 +30,17 @@ class Navbar extends React.Component {
   }
 
   render () {
-    let { brand, fixed, palette, className } = this.props
+    let { brand, fixed, className, ...rest } = this.props
+    let colors = styleProps(rest)
 
     return (
       <NavbarStyle
         fixed={fixed}
-        palette={palette}
-        className={`Navbar ${className || ''}`} >
-        <NavbarToggler palette={palette} onClick={() => this.toggle()} />
-        <NavbarBrand palette={palette}>{brand}</NavbarBrand>
+        className={`Navbar ${className || ''}`}
+        {...colors}>
+
+        <NavbarToggler onClick={() => this.toggle()} />
+        <NavbarBrand {...colors}>{brand}</NavbarBrand>
         <NavbarBody isOpen={this.state.open} onClose={() => this.toggle()}>
           {this.props.children}
         </NavbarBody>

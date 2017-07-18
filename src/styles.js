@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { font, palette, size } from 'styled-theme'
 import { mobileAndTablet } from './queries'
+import { bgColor } from 'styled-utils'
 
 export const NavbarStyle = styled.div`
   font-family: ${font('primary')};
@@ -17,7 +18,7 @@ export const NavbarStyle = styled.div`
   width: 100%;
 
   &:after {
-    background: linear-gradient(to right, ${palette(1)}, ${palette(4)});
+    background: linear-gradient(to right, ${bgColor}, ${bgColor});
     content: '';
     width: 100%;
     position: absolute;
@@ -75,7 +76,7 @@ export const NavbarItemStyle = styled.a`
     display: block;
   }
   &:hover, &.active {
-    color: ${palette(1)};
+    color: ${bgColor};
   }
 
   ${mobileAndTablet} {
@@ -91,7 +92,7 @@ export const NavbarTogglerStyle = styled.a`
   top: 16px;
   right: 10px;
   i {
-    color: ${palette('grayscale', 0)};
+    color: ${palette('grayscale', 2)};
     font-size: 33px;
   }
 
@@ -104,6 +105,6 @@ export const NavbarBrandStyle = styled.div`
   padding: 10px;
   border-right: 1px solid #ECEFF2;
   svg {
-    fill: ${palette(1)};
+    fill: ${bgColor};
   }
 `
