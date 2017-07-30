@@ -27,7 +27,7 @@ theme.sizes = {
 theme.shadows = {
   light: '0 1px 1px rgba(0, 0, 0, 0.08)',
   normal: '0 1px 2px rgba(0, 0, 0, 0.12)',
-  heavy: '1px 2px 2px rgba(0, 0, 0, 0.15)'
+  heavy: '0px 2px 2px rgba(0, 0, 0, 0.15)'
 }
 
 export default theme

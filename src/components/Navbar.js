@@ -1,6 +1,7 @@
 import React from 'react'
 import { object, bool, func, string, oneOfType } from 'prop-types'
 import css from 'classnames'
+import defaultTheme from '../theme'
 
 // components
 import NavbarBrand from './NavbarBrand'
@@ -24,7 +25,8 @@ class Navbar extends React.Component {
 
   static defaultProps = {
     isFixed: false,
-    isColor: 'white'
+    isColor: 'white',
+    theme: defaultTheme
   }
 
   toggle () {

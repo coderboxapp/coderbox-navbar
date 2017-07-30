@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { font, palette, size } from 'styled-theme'
+import { font, palette, size, key } from 'styled-theme'
 import { mobileAndTablet } from './queries'
 
 const bgColor = p => p.isColor === 'transparent' ? 'transparent' : palette(p.isColor, 0, p.reverse)
@@ -16,6 +16,7 @@ export const NavbarStyle = styled.div`
   min-height: 50px;
   box-sizing: border-box;
   background-color: ${bgColor};
+  box-shadow: ${key('shadows.light')};
   width: 100%;
   padding: 5px;
   ${p => {
