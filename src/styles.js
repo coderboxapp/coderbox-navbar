@@ -73,7 +73,7 @@ export const NavbarBodyStyle = styled.div`
       position: fixed;
       flex-direction: column;
       top: 0;
-      right: ${p => p.isOpen ? '0px' : '-56%'};
+      right: ${p => p.isOpen ? '0px' : '-60%'};
       width: 58%;
       bottom: 0;
       background: white;
