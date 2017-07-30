@@ -1,7 +1,11 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { font, palette, size } from 'styled-theme'
 import { mobileAndTablet } from './queries'
-import { bgColor } from 'styled-utils'
+
+const bgColor = p => p.isColor === 'transparent' ? 'transparent' : palette(p.isColor, 0, p.reverse)
+const textColor = p => p.hasTextColor ? palette(p.hasTextColor, 0) : (p.isColor === 'white' ? 'black' : 'white')
+const activeColor = p => p.hasActiveColor ? palette(p.hasActiveColor, 0) : palette('primary', 0)
+const zIndex = 900
 
 export const NavbarStyle = styled.div`
   font-family: ${font('primary')};
@@ -9,29 +13,46 @@ export const NavbarStyle = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: ${p => (p.fixed ? 'fixed' : 'relative')};
-  z-index: 1000;
   min-height: 50px;
   box-sizing: border-box;
-  padding-bottom: 3px;
-  background: white;
+  background-color: ${bgColor};
   width: 100%;
+  padding: 5px;
+  ${p => {
+    if (!p.isFixed) {
+      return css`
+        position: relative;
+      `
+    }
 
-  &:after {
-    background: linear-gradient(to right, ${bgColor}, ${bgColor});
-    content: '';
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 3px;
+    return css`
+      position: fixed;
+      z-index: ${zIndex};
+    `
+  }}
+
+  & .navbar-item {
+    color: ${textColor};
+    
+    ${mobileAndTablet} {
+      color: black;
+    }
   }
+
+  & .navbar-item.active {
+    color: ${activeColor}
+  }
+`
+
+export const NavbarBrandStyle = styled.div`
+  padding: 10px;
+  display: flex;
 `
 
 export const NavbarBodyStyle = styled.div`
   & .items {
     display: flex;
-    z-index: 200;
+    z-index: ${zIndex + 10};
   }
 
   & .overlay {
@@ -43,7 +64,7 @@ export const NavbarBodyStyle = styled.div`
     left: 0;
     background: rgba(0, 0, 0, 0.4);
     transition: opacity 0.25s;
-    z-index: 100;
+    z-index: ${zIndex + 5};
   }
 
   ${mobileAndTablet} {
@@ -51,8 +72,8 @@ export const NavbarBodyStyle = styled.div`
       position: fixed;
       flex-direction: column;
       top: 0;
-      right: ${p => p.isOpen ? '0px' : '-141px'};
-      width: 140px;
+      right: ${p => p.isOpen ? '0px' : '-56%'};
+      width: 58%;
       bottom: 0;
       background: white;
       box-shadow: 0 0 1px rgba(0, 0, 1, 0.12);
@@ -69,14 +90,26 @@ export const NavbarItemStyle = styled.a`
   text-decoration: none;
   text-align: center;
   padding: 8px 16px;
-  margin: 0px;
-  color: black;
+  margin: 0 5px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   i {
     display: block;
   }
-  &:hover, &.active {
-    color: ${bgColor};
+
+  &:hover {
+    ${p => {
+      if (!p.href) return
+      let color = 'rgba(0, 0, 0, 0.05)'
+
+      return css`
+        background-color: ${color};
+      `
+    }}
   }
 
   ${mobileAndTablet} {
@@ -91,20 +124,13 @@ export const NavbarTogglerStyle = styled.a`
   position: absolute;
   top: 16px;
   right: 10px;
+
   i {
-    color: ${palette('grayscale', 2)};
+    color: ${textColor};
     font-size: 33px;
   }
 
   ${mobileAndTablet} {
     display: block;
-  }
-`
-
-export const NavbarBrandStyle = styled.div`
-  padding: 10px;
-  border-right: 1px solid #ECEFF2;
-  svg {
-    fill: ${bgColor};
   }
 `

@@ -1,11 +1,11 @@
 import React from 'react'
+import css from 'classnames'
 import { string, bool, func } from 'prop-types'
 import { NavbarItemStyle } from '../styles'
 
 class NavbarItem extends React.Component {
   static propTypes = {
-    icon: string,
-    text: string,
+    hasIcon: string,
     href: string,
     hide: bool,
     isActive: bool,
@@ -19,24 +19,25 @@ class NavbarItem extends React.Component {
     onClick: () => true
   }
 
-  static contextTypes = {
-    palette: string
-  }
-
   render () {
-    let { href, icon, text, hide, isActive, onClick } = this.props
-    let { palette } = this.context
+    let { href, hasIcon, hide, isActive, children, onClick, ...props } = this.props
+    let className = css(
+      'navbar-item',
+      { 'active': isActive },
+      props.className
+    )
 
     if (hide) return null
 
     return (
       <NavbarItemStyle
         href={href}
-        palette={palette}
-        className={`NavbarItem${isActive ? ' active' : ''}`}
-        onClick={onClick}>
+        className={className}
+        onClick={onClick}
+        {...props} >
 
-        <i className='material-icons'>{icon}</i> {text}
+        {hasIcon && <i className='material-icons'>{hasIcon}</i>}
+        <div>{children}</div>
       </NavbarItemStyle>
     )
   }

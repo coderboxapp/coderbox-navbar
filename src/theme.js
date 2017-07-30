@@ -20,9 +20,7 @@ theme.fonts = {
 
 theme.sizes = {
   maxWidth: '650px',
-  fontSize: '14px',
-  fontSizeSmall: '12px',
-  iconSize: '24px',
+  font: '14px',
   radius: '4px'
 }
 
