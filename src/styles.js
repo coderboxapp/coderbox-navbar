@@ -16,7 +16,7 @@ export const NavbarStyle = styled.div`
   min-height: 50px;
   box-sizing: border-box;
   background-color: ${bgColor};
-  box-shadow: ${key('shadows.light')};
+  box-shadow: ${p => p.isColor === 'transparent' ? 'none' : key('shadows.light')};
   width: 100%;
   padding: 5px;
   ${p => {
