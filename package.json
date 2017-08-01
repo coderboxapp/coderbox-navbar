@@ -1,6 +1,6 @@
 {
   "name": "@coderbox/navbar",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Navbar is a React component used at Coderbox",
   "main": "lib/coderbox-navbar.js",
   "scripts": {

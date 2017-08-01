@@ -35,9 +35,8 @@ class NavbarItem extends React.Component {
         className={className}
         onClick={onClick}
         {...props} >
-
         {hasIcon && <i className='material-icons'>{hasIcon}</i>}
-        <div>{children}</div>
+        {children}
       </NavbarItemStyle>
     )
   }
