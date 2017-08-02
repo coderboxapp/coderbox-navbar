@@ -21,23 +21,21 @@ class NavbarItem extends React.Component {
 
   render () {
     let { href, hasIcon, hide, isActive, children, onClick, ...props } = this.props
-    let className = css(
-      'navbar-item',
-      { 'active': isActive },
-      props.className
-    )
+    let className = css('navbar-item', { 'active': isActive }, props.className)
+    let Element = NavbarItemStyle
 
     if (hide) return null
+    if (href) Element = NavbarItemStyle.withComponent('a')
 
     return (
-      <NavbarItemStyle
+      <Element
         href={href}
         className={className}
         onClick={onClick}
         {...props} >
         {hasIcon && <i className='material-icons'>{hasIcon}</i>}
         {children}
-      </NavbarItemStyle>
+      </Element>
     )
   }
 }

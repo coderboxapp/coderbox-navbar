@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import { font, palette, size, key } from 'styled-theme'
-import { mobileAndTablet } from './queries'
+import { onTouch } from 'mqcss'
 
 const bgColor = p => p.isColor === 'transparent' ? 'transparent' : palette(p.isColor, 0, p.reverse)
 const textColor = p => p.hasTextColor ? palette(p.hasTextColor, 0) : (p.isColor === 'white' ? 'black' : 'white')
@@ -35,7 +35,7 @@ export const NavbarStyle = styled.div`
   & .navbar-item {
     color: ${textColor};
     
-    ${mobileAndTablet} {
+    ${onTouch} {
       color: black;
     }
   }
@@ -68,7 +68,7 @@ export const NavbarBodyStyle = styled.div`
     z-index: ${zIndex + 5};
   }
 
-  ${mobileAndTablet} {
+  ${onTouch} {
     & .items {
       position: fixed;
       flex-direction: column;
@@ -86,7 +86,7 @@ export const NavbarBodyStyle = styled.div`
   }
 `
 
-export const NavbarItemStyle = styled.a`
+export const NavbarItemStyle = styled.div`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
@@ -113,7 +113,7 @@ export const NavbarItemStyle = styled.a`
     }}
   }
 
-  ${mobileAndTablet} {
+  ${onTouch} {
     width: 100%;
     padding: 15px 15px;
     border-bottom: 1px solid #ECEFF2;
@@ -131,7 +131,7 @@ export const NavbarTogglerStyle = styled.a`
     font-size: 33px;
   }
 
-  ${mobileAndTablet} {
+  ${onTouch} {
     display: block;
   }
 `
