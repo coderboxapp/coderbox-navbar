@@ -5,14 +5,12 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-runtime",
-    "styled-components",
+    ["styled-components"],
     [
-      "module-resolver",
-      {
-        "root": [ "./src" ],
+      "module-resolver", {
+        "root": ["./src"],
         "alias": {}
       }
     ]
   ]
-}
+  }

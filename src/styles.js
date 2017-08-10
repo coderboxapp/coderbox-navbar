@@ -1,56 +1,34 @@
 import styled, { css } from 'styled-components'
-import { font, palette, size, key } from 'styled-theme'
 import { onTouch } from 'mqcss'
 
-const bgColor = p => p.isColor === 'transparent' ? 'transparent' : palette(p.isColor, 0, p.reverse)
-const textColor = p => p.hasTextColor ? palette(p.hasTextColor, 0) : (p.isColor === 'white' ? 'black' : 'white')
-const activeColor = p => p.hasActiveColor ? palette(p.hasActiveColor, 0) : palette('primary', 0)
 const zIndex = 900
+const isFixed = ({ isFixed }) => {
+  if (!isFixed) return
+  return css`
+    position: fixed;
+    z-index: ${zIndex};
+  `
+}
 
-export const NavbarStyle = styled.div`
-  font-family: ${font('primary')};
-  font-size: ${size('font')};
+export const Navbar = styled.div`
+  width: 100%;
+  font-family: ${p => p.theme.fonts.primary};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 50px;
   box-sizing: border-box;
-  background-color: ${bgColor};
-  box-shadow: ${p => p.isColor === 'transparent' ? 'none' : key('shadows.light')};
-  width: 100%;
+  
   padding: 5px;
-  ${p => {
-    if (!p.isFixed) {
-      return css`
-        position: relative;
-      `
-    }
 
-    return css`
-      position: fixed;
-      z-index: ${zIndex};
-    `
-  }}
-
-  & .navbar-item {
-    color: ${textColor};
-    
-    ${onTouch} {
-      color: black;
-    }
-  }
-
-  & .navbar-item.active {
-    color: ${activeColor}
-  }
+  ${isFixed}
 `
 
-export const NavbarBrandStyle = styled.div`
+export const NavbarBrand = styled.div`
   padding: 10px;
   display: flex;
 `
 
-export const NavbarBodyStyle = styled.div`
+export const NavbarBody = styled.div`
   & .items {
     display: flex;
     z-index: ${zIndex + 10};
@@ -86,50 +64,21 @@ export const NavbarBodyStyle = styled.div`
   }
 `
 
-export const NavbarItemStyle = styled.div`
+export const NavbarItem = styled.div`
   cursor: pointer;
   text-decoration: none;
-  text-align: center;
-  padding: 8px 16px;
-  margin: 0 5px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  i {
-    display: block;
-  }
-
-  &:hover {
-    ${p => {
-      if (!p.href) return
-      let color = 'rgba(0, 0, 0, 0.05)'
-
-      return css`
-        background-color: ${color};
-      `
-    }}
-  }
-
-  ${onTouch} {
-    width: 100%;
-    padding: 15px 15px;
-    border-bottom: 1px solid #ECEFF2;
-  }
 `
 
-export const NavbarTogglerStyle = styled.a`
+export const NavbarToggler = styled.a`
   display: none;
   position: absolute;
   top: 16px;
   right: 10px;
-
-  i {
-    color: ${textColor};
-    font-size: 33px;
-  }
 
   ${onTouch} {
     display: block;

@@ -1,7 +1,6 @@
 import React from 'react'
 import { object, bool, func, string, oneOfType } from 'prop-types'
-import css from 'classnames'
-import defaultTheme from '../theme'
+import cx from 'classnames'
 
 // components
 import NavbarBrand from './NavbarBrand'
@@ -9,24 +8,21 @@ import NavbarToggler from './NavbarToggler'
 import NavbarBody from './NavbarBody'
 
 // styles
-import { NavbarStyle } from '../styles'
+import * as s from '../styles'
 
 class Navbar extends React.Component {
   state = { open: false }
 
   static propTypes = {
     isFixed: bool,
-    isColor: string,
-    hasTextColor: string,
-    hasActiveColor: string,
+    withColor: string,
     brand: oneOfType([ func, string, object ]),
     className: string
   }
 
   static defaultProps = {
     isFixed: false,
-    isColor: 'white',
-    theme: defaultTheme
+    withColor: 'primary'
   }
 
   toggle () {
@@ -34,20 +30,18 @@ class Navbar extends React.Component {
   }
 
   render () {
-    let { brand, isFixed, ...rest } = this.props
-    let className = css(
-      'navbar',
-      rest.className
-    )
+    let { brand, isFixed, ...props } = this.props
+    let { open } = this.state
+    let className = cx('navbar', props.className)
 
     return (
-      <NavbarStyle isFixed={isFixed} className={className} {...rest}>
-        <NavbarToggler isColor={rest.isColor} hasTextColor={rest.hasTextColor} onClick={() => this.toggle()} />
+      <s.Navbar {...props} isFixed={isFixed} className={className}>
+        <NavbarToggler onClick={() => this.toggle()} />
         <NavbarBrand>{brand}</NavbarBrand>
-        <NavbarBody isOpen={this.state.open} onClose={() => this.toggle()}>
+        <NavbarBody isOpen={open} onClose={() => this.toggle()}>
           {this.props.children}
         </NavbarBody>
-      </NavbarStyle>
+      </s.Navbar>
     )
   }
 }

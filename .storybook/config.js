@@ -1,13 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-import { configure, addDecorator, setAddon } from '@storybook/react';
-import infoAddon from '@storybook/addon-info'
-import theme from '../src/theme'
-
-// const Theme = story => <ThemeProvider theme={theme}>{story()}</ThemeProvider>
-// addDecorator(Theme)
-
-setAddon(infoAddon)
+import { configure } from '@storybook/react';
 
 const req = require.context('../src', true, /\.stories\.js$/)
 

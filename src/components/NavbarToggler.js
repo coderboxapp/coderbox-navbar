@@ -1,17 +1,14 @@
 import React from 'react'
 import css from 'classnames'
-import { NavbarTogglerStyle } from '../styles'
+import * as s from '../styles'
 
 const NavbarToggler = ({ onClick, ...props }) => {
-  let className = css(
-    'navbar-toggler',
-    props.className
-  )
+  let className = css('navbar-toggler', props.className)
 
   return (
-    <NavbarTogglerStyle className={className} {...props}>
+    <s.NavbarToggler className={className} {...props}>
       <i className='material-icons btn-open' onClick={onClick}>menu</i>
-    </NavbarTogglerStyle>
+    </s.NavbarToggler>
   )
 }
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import { storiesOf, action } from '@storybook/react'
-import styled, { withTheme } from 'styled-components'
-import theme from './theme'
+import styled from 'styled-components'
 
 import Navbar from './components/Navbar'
 import NavbarItem from './components/NavbarItem'
@@ -27,21 +26,6 @@ const Wrapper = styled.div`
   }
 `
 
-const PrimaryButton = styled.a`
-  border-radius: 5px;
-  background-color: #1b8ceb;
-  padding: 8px 14px;
-  color: white;
-`
-
-const customTheme = {
-  ...theme,
-  sizes: {
-    ...theme.sizes,
-    font: '18px'
-  }
-}
-
 storiesOf('NavBar', module)
   .add('simple usage', () => {
     return (
@@ -53,11 +37,11 @@ storiesOf('NavBar', module)
             Sign Out
           </NavbarItem>
         </Navbar>
-        <Navbar isColor='success' hasActiveColor='white' brand={<Logo isWhite />} theme={customTheme}>
+        <Navbar isColor='success' hasActiveColor='white' brand={<Logo isWhite />}>
           <NavbarItem href='#'>Home</NavbarItem>
           <NavbarItem href='#'>Jobs</NavbarItem>
           <NavbarItem>
-            <PrimaryButton>Sign Out</PrimaryButton>
+            Sign Out
           </NavbarItem>
         </Navbar>
       </Wrapper>

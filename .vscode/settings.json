@@ -5,10 +5,10 @@
   "javascript.validate.enable": false,
   "standard.options": {
     "env": [ "jest" ],
-    "globals": ["jquery"],
+    "globals": [],
     "ignore": [
-      "lib/**",
-      "node_modules/**"
+      "node_modules/**",
+      "lib/**"
     ],
     "parser": "babel-eslint"
   },

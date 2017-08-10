@@ -1,7 +1,7 @@
 import React from 'react'
 import css from 'classnames'
 import { string, bool, func } from 'prop-types'
-import { NavbarItemStyle } from '../styles'
+import * as s from '../styles'
 
 class NavbarItem extends React.Component {
   static propTypes = {
@@ -22,10 +22,9 @@ class NavbarItem extends React.Component {
   render () {
     let { href, hasIcon, hide, isActive, children, onClick, ...props } = this.props
     let className = css('navbar-item', { 'active': isActive }, props.className)
-    let Element = NavbarItemStyle
+    let Element = href ? s.NavbarItem.withComponent('a') : s.NavbarItem
 
     if (hide) return null
-    if (href) Element = NavbarItemStyle.withComponent('a')
 
     return (
       <Element
