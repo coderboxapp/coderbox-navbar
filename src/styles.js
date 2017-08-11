@@ -1,52 +1,9 @@
-import styled, { css } from 'styled-components'
-import { withColor, colors } from 'styled-utils'
+import styled from 'styled-components'
+import { withColor } from 'styled-utils'
 import { onTouch } from 'mqcss'
+import { isFixed, isStatic, hasBorders, withTextColor, withHover } from 'helpers'
 
 const zIndex = 900
-const isFixed = ({ isFixed }) => {
-  if (!isFixed) return
-  return css`
-    position: fixed;
-    z-index: ${zIndex};
-  `
-}
-
-const isStatic = ({ isStatic }) => {
-  if (!isStatic) return
-  return css`
-    & .navbar-item:hover {
-      background-color: transparent;
-    }
-  `
-}
-
-const hasBorders = ({ hasBorders }) => {
-  if (!hasBorders) return
-  return css`
-    & .navbar-item {
-      border-left: 1px solid rgba(0, 0, 0, 0.12);
-    }
-  `
-}
-
-const withTextColor = (props) => {
-  if (props.isOutlined || !props.withColor) return
-
-  let { textColor } = colors(props)
-
-  return css`
-    color: ${textColor};
-  `
-}
-
-const withHover = ({ href }) => {
-  if (!href) return
-  return css`
-    &:hover {
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-  `
-}
 
 export const Navbar = styled.div`
   width: 100%;
