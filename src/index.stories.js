@@ -1,5 +1,7 @@
 import React from 'react'
+import { withTheme } from 'utils'
 import { storiesOf, action } from '@storybook/react'
+import { Button, Icon } from '@coderbox/atoms'
 import styled from 'styled-components'
 
 import Navbar from './components/Navbar'
@@ -27,23 +29,35 @@ const Wrapper = styled.div`
 `
 
 storiesOf('NavBar', module)
-  .add('simple usage', () => {
+  .add('simple usage', withTheme(() => {
     return (
       <Wrapper>
-        <Navbar isColor='white' brand={<Logo />}>
-          <NavbarItem href='#' isActive hasIcon='timeline'>Home</NavbarItem>
-          <NavbarItem href='/jobs' hasIcon='work'>Jobs</NavbarItem>
-          <NavbarItem href='/signout' hasIcon='close' onClick={action('log out')}>
+
+        <Navbar isStatic brand={<Logo />}>
+          <NavbarItem href='#'>Home</NavbarItem>
+          <NavbarItem href='#'>
+            <Button withColor='primary'><Icon name='twitter' /> Twitter</Button>
+          </NavbarItem>
+          <NavbarItem>
+            <Button withColor='success'>Sign Out</Button>
+          </NavbarItem>
+        </Navbar>
+
+        <Navbar withColor='white' hasBorders brand={<Logo />}>
+          <NavbarItem href='#' isActive withIcon='star'>Home</NavbarItem>
+          <NavbarItem href='/jobs' withIcon='briefcase'>Jobs</NavbarItem>
+          <NavbarItem href='/signout' withIcon='close' onClick={action('log out')}>
             Sign Out
           </NavbarItem>
         </Navbar>
-        <Navbar isColor='success' hasActiveColor='white' brand={<Logo isWhite />}>
+
+        <Navbar withColor='success' brand={<Logo isWhite />}>
           <NavbarItem href='#'>Home</NavbarItem>
           <NavbarItem href='#'>Jobs</NavbarItem>
           <NavbarItem>
-            Sign Out
+            <Button>Sign Out</Button>
           </NavbarItem>
         </Navbar>
       </Wrapper>
     )
-  })
+  }))

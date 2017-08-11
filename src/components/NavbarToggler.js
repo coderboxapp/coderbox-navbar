@@ -1,5 +1,6 @@
 import React from 'react'
 import css from 'classnames'
+import { Icon } from '@coderbox/atoms'
 import * as s from '../styles'
 
 const NavbarToggler = ({ onClick, ...props }) => {
@@ -7,7 +8,7 @@ const NavbarToggler = ({ onClick, ...props }) => {
 
   return (
     <s.NavbarToggler className={className} {...props}>
-      <i className='material-icons btn-open' onClick={onClick}>menu</i>
+      <Icon name='bars' withSize='large' onClick={onClick} />
     </s.NavbarToggler>
   )
 }

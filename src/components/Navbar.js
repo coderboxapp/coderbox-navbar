@@ -22,7 +22,8 @@ class Navbar extends React.Component {
 
   static defaultProps = {
     isFixed: false,
-    withColor: 'primary'
+    withColor: null,
+    withTone: 0
   }
 
   toggle () {
@@ -35,12 +36,13 @@ class Navbar extends React.Component {
     let className = cx('navbar', props.className)
 
     return (
-      <s.Navbar {...props} isFixed={isFixed} className={className}>
-        <NavbarToggler onClick={() => this.toggle()} />
+      <s.Navbar {...props} isFixed={isFixed} isOpen={open} className={className}>
         <NavbarBrand>{brand}</NavbarBrand>
-        <NavbarBody isOpen={open} onClose={() => this.toggle()}>
+        <NavbarToggler onClick={() => this.toggle()} />
+        <NavbarBody isOpen={open}>
           {this.props.children}
         </NavbarBody>
+        <div className='overlay' onClick={() => this.toggle()} />
       </s.Navbar>
     )
   }

@@ -1,11 +1,12 @@
 import React from 'react'
 import css from 'classnames'
 import { string, bool, func } from 'prop-types'
+import { Icon } from '@coderbox/atoms'
 import * as s from '../styles'
 
 class NavbarItem extends React.Component {
   static propTypes = {
-    hasIcon: string,
+    withIcon: string,
     href: string,
     hide: bool,
     isActive: bool,
@@ -20,7 +21,7 @@ class NavbarItem extends React.Component {
   }
 
   render () {
-    let { href, hasIcon, hide, isActive, children, onClick, ...props } = this.props
+    let { href, withIcon, hide, isActive, children, onClick, ...props } = this.props
     let className = css('navbar-item', { 'active': isActive }, props.className)
     let Element = href ? s.NavbarItem.withComponent('a') : s.NavbarItem
 
@@ -32,7 +33,7 @@ class NavbarItem extends React.Component {
         className={className}
         onClick={onClick}
         {...props} >
-        {hasIcon && <i className='material-icons'>{hasIcon}</i>}
+        {withIcon && <Icon name={withIcon} />}
         {children}
       </Element>
     )

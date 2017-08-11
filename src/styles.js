@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { withColor, colors } from 'styled-utils'
 import { onTouch } from 'mqcss'
 
 const zIndex = 900
@@ -10,28 +11,62 @@ const isFixed = ({ isFixed }) => {
   `
 }
 
+const isStatic = ({ isStatic }) => {
+  if (!isStatic) return
+  return css`
+    & .navbar-item:hover {
+      background-color: transparent;
+    }
+  `
+}
+
+const hasBorders = ({ hasBorders }) => {
+  if (!hasBorders) return
+  return css`
+    & .navbar-item {
+      border-left: 1px solid rgba(0, 0, 0, 0.12);
+    }
+  `
+}
+
+const withTextColor = (props) => {
+  if (props.isOutlined || !props.withColor) return
+
+  let { textColor } = colors(props)
+
+  return css`
+    color: ${textColor};
+  `
+}
+
+const withHover = ({ href }) => {
+  if (!href) return
+  return css`
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  `
+}
+
 export const Navbar = styled.div`
   width: 100%;
-  font-family: ${p => p.theme.fonts.primary};
+  position: relative;
+  font-family: ${(p) => p.theme.fonts.primary};
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   box-sizing: border-box;
-  
-  padding: 5px;
 
   ${isFixed}
-`
+  ${withColor}
+  ${isStatic}
+  ${hasBorders}
 
-export const NavbarBrand = styled.div`
-  padding: 10px;
-  display: flex;
-`
+  & .navbar-body {
+    ${withColor}
+  }
 
-export const NavbarBody = styled.div`
-  & .items {
-    display: flex;
-    z-index: ${zIndex + 10};
+  & .navbar-item,
+  & .navbar-item .icon {
+    ${withTextColor};
   }
 
   & .overlay {
@@ -47,40 +82,75 @@ export const NavbarBody = styled.div`
   }
 
   ${onTouch} {
-    & .items {
-      position: fixed;
-      flex-direction: column;
-      top: 0;
-      right: ${p => p.isOpen ? '0px' : '-60%'};
-      width: 58%;
-      bottom: 0;
-      background: white;
-      box-shadow: 0 0 1px rgba(0, 0, 1, 0.12);
-      transition: right 0.25s;
-    }
     & .overlay {
-      display: ${p => p.isOpen ? 'block' : 'none'};
+      display: ${p => (p.isOpen ? 'block' : 'none')};
     }
   }
+`
+
+export const NavbarBrand = styled.div`
+  padding: 10px;
+  display: flex;
 `
 
 export const NavbarItem = styled.div`
   cursor: pointer;
   text-decoration: none;
-  box-sizing: border-box;
+  box-sizing: inherit;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  line-height: 1.5;
+  padding: 0.5rem 1.2rem;
+  position: relative;
+
+  ${withHover};
 `
 
 export const NavbarToggler = styled.a`
   display: none;
-  position: absolute;
-  top: 16px;
-  right: 10px;
+  align-items: center;
+  margin-left: auto;
+  margin-right: 10px;
+  line-height: 1.5;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   ${onTouch} {
-    display: block;
+    display: flex;
+  }
+`
+
+export const NavbarBody = styled.div`
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: flex-end;
+  box-sizing: inherit;
+  z-index: ${zIndex + 10};
+
+  ${onTouch} {
+    position: fixed;
+    flex-direction: column;
+    justify-content: flex-start;
+    top: 0;
+    right: ${(p) => (p.isOpen ? '0px' : '-60%')};
+    width: 58%;
+    bottom: 0;
+    background: white;
+    box-shadow: 0 0 1px rgba(0, 0, 1, 0.12);
+    transition: right 0.25s;
+
+    .navbar-item {
+      height: auto;
+      padding: 1.0rem 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
   }
 `
