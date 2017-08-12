@@ -1,6 +1,6 @@
 {
   "name": "@coderbox/navbar",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Navbar is a React component used at Coderbox",
   "main": "lib/coderbox-navbar.js",
   "scripts": {
@@ -38,14 +38,13 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "standard": "^10.0.3",
-    "webpack": "^3.5.3",
+    "webpack": "^3.5.4",
     "webpack-node-externals": "^1.6.0",
     "yargs": "^8.0.2"
   },
   "dependencies": {
-    "@coderbox/atoms": "^1.0.11",
+    "@coderbox/atoms": "^1.0.15",
     "classnames": "^2.2.5",
-    "loadash": "^0.0.1",
     "mqcss": "^1.0.2",
     "prop-types": "^15.5.10",
     "react": "^15.5.4",
