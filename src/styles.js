@@ -105,6 +105,7 @@ export const NavbarBody = styled.div`
     background: white;
     box-shadow: 0 0 1px rgba(0, 0, 1, 0.12);
     transition: right 0.25s;
+    align-items: stretch;
 
     .navbar-item {
       height: auto;
