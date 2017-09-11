@@ -92,6 +92,7 @@ export const NavbarBody = styled.div`
   justify-content: flex-end;
   box-sizing: inherit;
   z-index: ${zIndex + 10};
+  align-items: center;
 
   ${onTouch} {
     position: fixed;

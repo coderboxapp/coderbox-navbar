@@ -1,13 +1,13 @@
 {
   "name": "@coderbox/navbar",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Navbar is a React component used at Coderbox",
   "main": "lib/coderbox-navbar.js",
   "scripts": {
     "prepare": "yarn build",
     "build": "webpack --env production",
     "dev": "webpack --progress --colors --watch --env development",
-    "storybook": "start-storybook -p 6006",
+    "start": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages",
     "standard": "standard"
