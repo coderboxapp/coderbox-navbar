@@ -32,18 +32,17 @@ storiesOf('NavBar', module)
   .add('simple usage', withTheme(() => {
     return (
       <Wrapper>
-
         <Navbar isStatic brand={<Logo />}>
           <NavbarItem href='#'>Home</NavbarItem>
           <NavbarItem href='#'>
-            <Button withColor='primary'><Icon name='twitter' /> Twitter</Button>
+            <Button color='primary'><Icon name='twitter' /> Twitter</Button>
           </NavbarItem>
           <NavbarItem>
-            <Button withColor='success'>Sign Out</Button>
+            <Button color='success'>Sign Out</Button>
           </NavbarItem>
         </Navbar>
 
-        <Navbar withColor='white' hasBorders brand={<Logo />}>
+        <Navbar color='white' hasBorders brand={<Logo />}>
           <NavbarItem href='#' isActive withIcon='star'>Home</NavbarItem>
           <NavbarItem href='/jobs' withIcon='briefcase'>Jobs</NavbarItem>
           <NavbarItem href='/signout' withIcon='close' onClick={action('log out')}>
@@ -51,7 +50,7 @@ storiesOf('NavBar', module)
           </NavbarItem>
         </Navbar>
 
-        <Navbar withColor='success' brand={<Logo isWhite />}>
+        <Navbar color='success' brand={<Logo isWhite />}>
           <NavbarItem href='#'>Home</NavbarItem>
           <NavbarItem href='#'>Jobs</NavbarItem>
           <NavbarItem>

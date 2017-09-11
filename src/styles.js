@@ -51,6 +51,7 @@ export const NavbarBrand = styled.div`
 `
 
 export const NavbarItem = styled.div`
+  color: inherit;
   cursor: pointer;
   text-decoration: none;
   box-sizing: inherit;
