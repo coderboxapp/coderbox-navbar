@@ -1,5 +1,5 @@
 import { css } from 'styled-components'
-import { colors } from 'styled-utils'
+import * as color from 'styled-utils/color'
 
 export const isFixed = ({ isFixed }) => {
   if (!isFixed) return
@@ -30,7 +30,7 @@ export const hasBorders = ({ hasBorders }) => {
 export const withTextColor = (props) => {
   if (props.isOutlined || !props.withColor) return
 
-  let { textColor } = colors(props)
+  let { textColor } = color.fromProps(props)
 
   return css`
     color: ${textColor};
